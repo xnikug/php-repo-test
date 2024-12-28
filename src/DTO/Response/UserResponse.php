@@ -3,7 +3,7 @@
 namespace App\DTO\Response;
 
 
-class UserResponse
+class UserResponse implements \JsonSerializable
 {
     private ?int $id = null;
 
@@ -13,9 +13,9 @@ class UserResponse
 
     // Getters and Setters
 
-    public function setId(): ?int
+    public function setId(?int $id): void
     {
-        return $this->id;
+        $this->id =$id;
     }
 
     public function getId(): ?int
@@ -28,7 +28,7 @@ class UserResponse
         return $this->name;
     }
 
-    public function setName(string $name): void
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }
@@ -38,8 +38,18 @@ class UserResponse
         return $this->is_active;
     }
 
-    public function setIsActive(bool $is_active): void
+    public function setIsActive(?bool $is_active): void
     {
         $this->is_active = $is_active;
     }
+    
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'is_active' => $this->getIsActive(),
+        ];
+    }
+
 }

@@ -2,6 +2,8 @@
 // src/Repository/UserRepository.php
 namespace App\Repository;
 
+use App\DTO\Mapper\UserMapper;
+use App\DTO\Response\UserResponse;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -22,17 +24,10 @@ class UserRepository extends ServiceEntityRepository
             FROM App\Entity\User u
             WHERE u.id = :id'
         )->setParameter('id', $id);
-
-        // returns an User with the same name
-        return $query->getResult();
+        return $query->getOneOrNullResult();
     }
-    public function createUser(string $name, bool $is_active): array
+    public function createUser(User $user): ?User
     {
-        // Create a new User entity
-        $user = new User();
-        $user->setName($name);
-        $user->setIsActive($is_active);
-
         // Get the EntityManager
         $entityManager = $this->getEntityManager();
 
@@ -43,10 +38,6 @@ class UserRepository extends ServiceEntityRepository
         $entityManager->flush();
 
         // Return the created user's details
-        return [
-            'id' => $user->getId(),
-            'name' => $user->getName(),
-            'is_active' => $user->getIsActive(),
-        ];
+        return $user;
     }
 }

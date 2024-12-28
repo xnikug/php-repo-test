@@ -17,7 +17,7 @@ class User
     private ?string $name = null;
 
     #[ORM\Column]
-    private ?bool $is_active = null;
+    private ?bool $isActive = null;
 
     // Getters and Setters
 
@@ -43,11 +43,11 @@ class User
 
     public function getIsActive(): ?bool
     {
-        return $this->is_active;
+        return $this->isActive;
     }
 
-    public function setIsActive(?bool $is_active): void
+    public function setIsActive(?bool $isActive): void
     {
-        $this->is_active = $is_active;
+        $this->isActive = $isActive;
     }
 }

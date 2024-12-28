@@ -2,12 +2,13 @@
 // src/DTO/Mapper/UserMapper.php
 namespace App\DTO\Mapper;
 
+use App\DTO\Request\UserRequest;
 use App\Entity\User;
 use App\DTO\Response\UserResponse;
 
 class UserMapper
 {
-    public static function entityToDto(?User $user): ?UserResponse
+    public static function entityToResponseDto(?User $user): ?UserResponse
     {
         if ($user == null)
         {
@@ -17,11 +18,11 @@ class UserMapper
         $userResponse->setId($user->getId());
         $userResponse->setName($user->getName());
         $userResponse->setIsActive($user->getIsActive());
-
+        
         return $userResponse;
     }
 
-    public static function dtoToEntity(?UserResponse $userResponse): ?User
+    public static function responseDtoToEntity(?UserResponse $userResponse): ?User
     {
         if ($userResponse == null)
         {
@@ -32,6 +33,33 @@ class UserMapper
         $user->setId($userResponse->getId());
         $user->setName($userResponse->getName());
         $user->setIsActive($userResponse->getIsActive());
+
+        return $user;
+    }
+
+    public static function entityToRequestDto(?User $user): ?UserRequest
+    {
+        if ($user == null)
+        {
+            return null;
+        }
+        $userRequest = new UserRequest();
+        $userRequest->setName($user->getName());
+        $userRequest->setIsActive($user->getIsActive());
+
+        return $userRequest;
+    }
+
+    public static function requestDtoToEntity(?UserRequest $userRequest): ?User
+    {
+        if ($userRequest == null)
+        {
+            return null;
+        }
+
+        $user = new User();
+        $user->setName($userRequest->getName());
+        $user->setIsActive($userRequest->getIsActive());
 
         return $user;
     }
