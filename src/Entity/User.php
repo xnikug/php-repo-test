@@ -11,7 +11,7 @@ class User
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
@@ -21,9 +21,14 @@ class User
 
     // Getters and Setters
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     public function getName(): ?string
@@ -31,7 +36,7 @@ class User
         return $this->name;
     }
 
-    public function setName(string $name): void
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }
@@ -41,7 +46,7 @@ class User
         return $this->is_active;
     }
 
-    public function setIsActive(bool $is_active): void
+    public function setIsActive(?bool $is_active): void
     {
         $this->is_active = $is_active;
     }

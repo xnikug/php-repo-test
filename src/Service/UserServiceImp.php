@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Repository\UserRepository;
 use App\DTO\Response\UserResponse;
+use App\DTO\Mapper\UserMapper;
 
 class UserServiceImp implements UserService
 {
@@ -14,8 +15,8 @@ class UserServiceImp implements UserService
         $this->userRepository = $userRepository;
     }
 
-    function findUserById(int $id): array
+    function findUserById(int $id): UserResponse
     {
-        return [];
+        return UserMapper::entityToDto($this->userRepository->findUserById($id));
     }
 }

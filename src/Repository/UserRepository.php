@@ -2,6 +2,7 @@
 // src/Repository/UserRepository.php
 namespace App\Repository;
 
+use App\DTO\Response\UserResponse;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -14,17 +15,17 @@ class UserRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return User[]
+     * @return User
      */
-    public function findByName(string $name): array
+    public function findUserById(int $id): User
     {
         $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery(
             'SELECT u
             FROM App\Entity\User u
-            WHERE u.name = :name'
-        )->setParameter('name', $name);
+            WHERE u.id = :id'
+        )->setParameter('id', $id);
 
         // returns an array of User with the same name
         return $query->getResult();
