@@ -7,5 +7,5 @@ use App\DTO\Response\UserResponse;
 
 interface UserService
 {
-    public function findUserById(int $id): UserResponse;
+    public function getUserById(int $id): ?UserResponse;
 }

@@ -2,6 +2,7 @@
 // src/Controller/UserController.php
 namespace App\Controller;
 
+use App\DTO\Response\UserResponse;
 use App\Service\UserService;
 use App\Service\UserServiceImp;
 
@@ -32,7 +33,12 @@ class UserController
     #[Route('user/{id}', methods:['GET'])]
     public function getUserById(int $id): Response
     {
-        return new Response(json_encode($this->userService->getUserById($id)), Response::HTTP_OK);
+        $userResponse = $this->userService->getUserById($id);
+        if ($userResponse == null){
+            return new Response('', Response::HTTP_NOT_FOUND);
+        }else{
+            return new Response(json_encode($userResponse), Response::HTTP_OK);
+        }
     }
 
 }

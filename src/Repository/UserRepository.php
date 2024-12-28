@@ -2,11 +2,10 @@
 // src/Repository/UserRepository.php
 namespace App\Repository;
 
-use App\DTO\Response\UserResponse;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-// ...
+
 class UserRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -14,10 +13,7 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    /**
-     * @return User
-     */
-    public function getUserById(int $id): User
+    public function getUserById(int $id): ?User
     {
         $entityManager = $this->getEntityManager();
 
@@ -27,7 +23,7 @@ class UserRepository extends ServiceEntityRepository
             WHERE u.id = :id'
         )->setParameter('id', $id);
 
-        // returns an array of User with the same name
+        // returns an User with the same name
         return $query->getResult();
     }
     public function createUser(string $name, bool $is_active): array
