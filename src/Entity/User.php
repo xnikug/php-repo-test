@@ -31,11 +31,9 @@ class User
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name): void
     {
         $this->name = $name;
-
-        return $this;
     }
 
     public function getIsActive(): ?bool
@@ -43,10 +41,8 @@ class User
         return $this->is_active;
     }
 
-    public function setIsActive(bool $is_active): self
+    public function setIsActive(bool $is_active): void
     {
         $this->is_active = $is_active;
-
-        return $this;
     }
 }

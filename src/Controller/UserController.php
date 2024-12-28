@@ -17,4 +17,10 @@ class UserController
             'Number: ' . $number
         );
     }
+    #[Route('user', methods:['GET'])]
+    public function getUsers(): Response
+    {
+        return new Response();
+    }
+
 }
