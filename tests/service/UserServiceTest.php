@@ -11,9 +11,9 @@ class UserServiceTest extends TestCase
     public function testFindUserById()
     {
         $userService = new UserService();
-        $result = $userService->findUserById(1);
+        $result = $userService->getUserById(1);
 
-        $this->assertInstanceOf(UserResponse::class, $result); // Correct
-        // Add more assertions as needed
+        $this->assertInstanceOf(UserResponse::class, $result);
+
     }
 }

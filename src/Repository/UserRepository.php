@@ -17,7 +17,7 @@ class UserRepository extends ServiceEntityRepository
     /**
      * @return User
      */
-    public function findUserById(int $id): User
+    public function getUserById(int $id): User
     {
         $entityManager = $this->getEntityManager();
 

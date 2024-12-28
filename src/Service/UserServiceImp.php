@@ -15,8 +15,8 @@ class UserServiceImp implements UserService
         $this->userRepository = $userRepository;
     }
 
-    function findUserById(int $id): UserResponse
+    function getUserById(int $id): UserResponse
     {
-        return UserMapper::entityToDto($this->userRepository->findUserById($id));
+        return UserMapper::entityToDto($this->userRepository->getUserById($id));
     }
 }
