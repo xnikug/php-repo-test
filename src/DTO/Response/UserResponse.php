@@ -48,7 +48,7 @@ class UserResponse implements \JsonSerializable
         return [
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'is_active' => $this->getIsActive(),
+            'isActive' => $this->getIsActive(),
         ];
     }
 
